@@ -96,19 +96,27 @@
     gsap.registerPlugin(ScrollTrigger);
 
     const lines = document.querySelectorAll('[data-animate]');
+
+    // Animate each line individually and change background per line
     lines.forEach((el, i) => {
-      gsap.to(el, {
-        opacity: 1,
+      const color = el.dataset.color || '#000000';
+
+      gsap.fromTo(el, { y: 40, autoAlpha: 0 }, {
         y: 0,
+        autoAlpha: 1,
         duration: 0.8,
-        delay: i * 0.1,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: el,
-          start: 'top 80%'
-        },
-        onStart: () => {
-          document.body.style.background = el.dataset.color;
+          start: 'top 85%',
+          end: 'bottom 60%',
+          toggleActions: 'play none none reverse',
+          onEnter: () => {
+            gsap.to('body', { backgroundColor: color, duration: 1 });
+          },
+          onEnterBack: () => {
+            gsap.to('body', { backgroundColor: color, duration: 1 });
+          }
         }
       });
     });
@@ -148,7 +156,6 @@
       trigger: '#blur',
       start: 'top center',
       onEnter: () => {
-        gsap.to(lines, {color: '#fff', duration: 0.3});
         gsap.to('body', {backgroundColor: '#ff00ff', repeat: -1, yoyo: true, duration: 0.4, ease: 'none'});
       }
     });
