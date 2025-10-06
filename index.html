@@ -51,6 +51,12 @@
       border-radius: 6px;
       margin-top: 2rem;
     }
+    .whisper {
+      font-size: 0.9rem;
+      font-style: italic;
+      opacity: 0.6;
+      position: relative;
+    }
   </style>
 </head>
 <body>
@@ -67,12 +73,17 @@
     <section id="flash">
       <h2 data-animate data-color="#ffffff">FLASH.</h2>
       <p data-animate data-color="#000000">A burst. Whiteout. My name—your hand—</p>
+      <p data-animate data-color="#220011">You shove me back—accident, I know—</p>
       <p data-animate data-color="#220011">—the floor rises fast.</p>
     </section>
 
     <section id="fall">
       <h2 data-animate data-color="#220011">Black. Ringing.</h2>
       <p data-animate data-color="#330022">Someone shouting. Can't tell what.</p>
+      <p class="whisper" data-animate data-color="#440033">“He pushed them?”</p>
+      <p class="whisper" data-animate data-color="#440033">“No, it was the photo—”</p>
+      <p class="whisper" data-animate data-color="#440033">“Oh my god, look.”</p>
+      <p data-animate data-color="#550044">The bass still thumps. You’re frozen.</p>
       <button id="getup">try to get up</button>
     </section>
 
@@ -81,13 +92,15 @@
       <p data-animate data-color="#990066" style="font-size:2rem;">“Hey—hey—look at me.”</p>
       <p data-animate data-color="#cc0088" style="font-size:3rem;">“You okay?” “Hey!”</p>
       <p data-animate data-color="#ff33aa" style="font-size:1.5rem;">Lights flicker. Music doesn’t stop.</p>
+      <p data-animate data-color="#ff55cc">Your friend’s face: pale, guilty, still.</p>
     </section>
 
     <section id="blur" style="display:none;">
       <h2 data-animate data-color="#00ff88">The night moves on.</h2>
       <p data-animate data-color="#00d7ff">Colours spin faster.</p>
-      <p data-animate data-color="#ff0077">Words blur, laughter returns—</p>
-      <p data-animate data-color="#ff8800">as if nothing happened.</p>
+      <p data-animate data-color="#ff0077">Whispers fade into the bassline.</p>
+      <p data-animate data-color="#ff8800">Words blur, laughter returns—</p>
+      <p data-animate data-color="#ffbb00">as if nothing happened.</p>
     </section>
 
   </main>
@@ -117,6 +130,25 @@
           onEnterBack: () => {
             gsap.to('body', { backgroundColor: color, duration: 1 });
           }
+        }
+      });
+    });
+
+    // Whisper animation: fade and jitter to mimic gossip
+    const whispers = document.querySelectorAll('.whisper');
+    whispers.forEach(w => {
+      gsap.to(w, {
+        opacity: 0.9,
+        x: () => gsap.utils.random(-10, 10),
+        y: () => gsap.utils.random(-5, 5),
+        repeat: -1,
+        yoyo: true,
+        duration: () => gsap.utils.random(1, 2),
+        ease: 'sine.inOut',
+        scrollTrigger: {
+          trigger: w,
+          start: 'top 90%',
+          toggleActions: 'play pause resume pause'
         }
       });
     });
@@ -162,5 +194,4 @@
   </script>
 </body>
 </html>
-
 
