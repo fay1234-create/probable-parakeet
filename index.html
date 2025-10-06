@@ -1,67 +1,159 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Club Poem — After the Flash</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Club Poem — Try to Get Up</title>
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tufte-css@1.8.0/tufte.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tufte-css@1.8.0/tufte.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-
-<style>
-:root{
---bg: #0b0b0b;
---paper: #0b0b0b;
---ink: #f7f7f7;
---accent: #ff0077;
---muted: rgba(255,255,255,0.06);
-}
-body{
-margin:0;
-font-family:"Inter",system-ui;
-background:var(--bg);
-color:var(--ink);
-transition: background 0.6s ease, color 0.6s ease;
-}
-main.tufte{max-width:70ch;margin:3rem auto;padding:2rem;}
-section{min-height:80vh;padding:5rem 0;}
-h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;}
-p{font-size:1.1rem;max-width:60ch;}
-.accent-band{position:fixed;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent),transparent);z-index:10;transition:background 0.4s ease;}
-</style>
+  <style>
+    :root {
+      --bg: #000000;
+      --ink: #ffffff;
+      --accent: #ff0077;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui;
+      background: var(--bg);
+      color: var(--ink);
+      transition: background 0.6s ease, color 0.6s ease;
+    }
+    main.tufte {
+      max-width: 70ch;
+      margin: 3rem auto;
+      padding: 2rem;
+    }
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      overflow: hidden;
+    }
+    h2, p {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    button {
+      background: var(--accent);
+      border: none;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
-<div class="accent-band"></div>
-<main class="tufte">
+  <main class="tufte">
 
+    <section id="club">
+      <h2 data-animate data-color="#ff0077">Bass under my skin.</h2>
+      <p data-animate data-color="#00ff88">We’re shouting nothing, but it feels like everything.</p>
+      <p data-animate data-color="#00d7ff">“Another round?” “Obviously!”</p>
+      <p data-animate data-color="#ffb400">The room sways, I laugh too loud.</p>
+      <p data-animate data-color="#ff66cc">You lean in close, phone raised—</p>
+    </section>
 
-<section data-color="#0b0b0b" data-accent="#ff0088">
-<h2 data-animate>We arrive loud.</h2>
-<p data-animate>Coats off, glitter dusting the air. Someone yells, “shots?” Someone else yells “obviously!” The floor thumps like a heartbeat we all share.</p>
-</section>
+    <section id="flash">
+      <h2 data-animate data-color="#ffffff">FLASH.</h2>
+      <p data-animate data-color="#000000">A burst. Whiteout. My name—your hand—</p>
+      <p data-animate data-color="#220011">—the floor rises fast.</p>
+    </section>
 
+    <section id="fall">
+      <h2 data-animate data-color="#220011">Black. Ringing.</h2>
+      <p data-animate data-color="#330022">Someone shouting. Can't tell what.</p>
+      <button id="getup">try to get up</button>
+    </section>
 
-<section data-color="#001f3f" data-accent="#00e0ff">
-<h2 data-animate>Drinks clatter, laughter spills.</h2>
-<p data-animate>“You look incredible.” “What?” “I said incredible!” The bass drowns everything. We shout over the sound, half words, half rhythm.</p>
-</section>
+    <section id="wake" style="display:none;">
+      <h2 data-animate data-color="#660044">“You okay?”</h2>
+      <p data-animate data-color="#990066" style="font-size:2rem;">“Hey—hey—look at me.”</p>
+      <p data-animate data-color="#cc0088" style="font-size:3rem;">“You okay?” “Hey!”</p>
+      <p data-animate data-color="#ff33aa" style="font-size:1.5rem;">Lights flicker. Music doesn’t stop.</p>
+    </section>
 
+    <section id="blur" style="display:none;">
+      <h2 data-animate data-color="#00ff88">The night moves on.</h2>
+      <p data-animate data-color="#00d7ff">Colours spin faster.</p>
+      <p data-animate data-color="#ff0077">Words blur, laughter returns—</p>
+      <p data-animate data-color="#ff8800">as if nothing happened.</p>
+    </section>
 
-<section data-color="#310047" data-accent="#b600ff">
-<h2 data-animate>Someone’s taking a photo—</h2>
-<p data-animate>the flash splits the night open. A reach, a laugh, a stumble—</p>
-</section>
+  </main>
 
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
 
-<section data-color="#0a0a0a" data-accent="#440022" class="slow">
-<h2 data-animate>—a fall. Silence that isn’t silence.</h2>
-<p data-animate>“Hey—are you okay?” “You okay?” “Hey!” The lights still spin but slower now. The music seems to wait for an answer.</p>
-<p data-animate>Hands on shoulders. Breath held. “You’re fine right?” “He’s fine.” “He’s—”</p>
-</section>
+    const lines = document.querySelectorAll('[data-animate]');
+    lines.forEach((el, i) => {
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: i * 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 80%'
+        },
+        onStart: () => {
+          document.body.style.background = el.dataset.color;
+        }
+      });
+    });
+
+    // Flash section effect
+    ScrollTrigger.create({
+      trigger: '#flash',
+      start: 'top center',
+      onEnter: () => {
+        gsap.to('body', {background: '#ffffff', duration: 0.1});
+        gsap.to('body', {background: '#000000', delay: 0.2, duration: 1});
+      }
+    });
+
+    // Button interaction
+    let clicks = 0;
+    const button = document.getElementById('getup');
+    const wake = document.getElementById('wake');
+    const blur = document.getElementById('blur');
+    button.addEventListener('click', () => {
+      clicks++;
+      if (clicks < 3) {
+        button.textContent = `try to get up (${3 - clicks} more)`;
+        gsap.to(button, {scale: 1.1, duration: 0.2, yoyo: true, repeat: 1});
+      } else {
+        button.textContent = '...';
+        gsap.to(button, {autoAlpha: 0, duration: 0.5, onComplete: () => {
+          wake.style.display = 'block';
+          blur.style.display = 'block';
+          ScrollTrigger.refresh();
+        }});
+      }
+    });
+
+    // After wake section: faster, muddled colours
+    ScrollTrigger.create({
+      trigger: '#blur',
+      start: 'top center',
+      onEnter: () => {
+        gsap.to(lines, {color: '#fff', duration: 0.3});
+        gsap.to('body', {backgroundColor: '#ff00ff', repeat: -1, yoyo: true, duration: 0.4, ease: 'none'});
+      }
+    });
+  </script>
+</body>
+</html>
+
 
